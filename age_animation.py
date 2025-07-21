@@ -104,7 +104,7 @@ def create_detailed_age_animation(interval=2000, repeat=True, save_gif=False, fi
             })
     
     # アニメーション用の図を作成
-    fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(20, 10), gridspec_kw={'height_ratios': [3, 1]})
+    fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(24, 12), gridspec_kw={'height_ratios': [3, 1]})
     
     # 政党名のリスト
     parties_list = list(parties.keys())
@@ -141,8 +141,8 @@ def create_detailed_age_animation(interval=2000, repeat=True, save_gif=False, fi
         legend_labels.append(f'{parties[party]}: 0.0%')
     
     # 凡例を追加
-    legend = ax1.legend(legend_handles, legend_labels, bbox_to_anchor=(1.05, 1), 
-                        loc='upper left', fontsize=9, ncol=1)
+    legend = ax1.legend(legend_handles, legend_labels, bbox_to_anchor=(1.02, 1), 
+                        loc='upper left', fontsize=8, ncol=1)
     
     # タイトル用のテキスト
     title_text = fig.suptitle('', fontsize=16, fontweight='bold', y=0.95)
@@ -189,8 +189,7 @@ def create_detailed_age_animation(interval=2000, repeat=True, save_gif=False, fi
         
         # 既存のテキストを完全に削除（メイングラフ）
         for artist in ax1.texts[:]:  # コピーを作成してイテレート
-            if artist != age_limit_text:
-                artist.remove()
+            artist.remove()
         
         # 値のラベルは表示しない（graph.pyと同様）
         pass
@@ -250,7 +249,7 @@ def create_detailed_age_animation(interval=2000, repeat=True, save_gif=False, fi
         anim.save(filename, writer='pillow', fps=FPS)
         print(f"保存完了: {filename}")
     
-    plt.subplots_adjust(right=0.8)  # 凡例のためのスペースを確保
+    plt.subplots_adjust(right=0.85, left=0.1, top=0.95, bottom=0.1)  # 凡例のためのスペースを確保
     plt.show()
     
     return anim
